@@ -15,15 +15,15 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-				<mesh filename="3D_model_of_a_Cube.stl" scale="0.01 0.01 0.01"/>
+				<mesh filename="Uniblate_25cm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
        <material name="white">
         <color rgba="1 1 1 1"/>
       </material>
     </visual>
-    <collision>
+    <collision concave="yes">
       <geometry>
-      <mesh filename="3D_model_of_a_Cube.stl" scale="0.01 0.01 0.01"/> 
+      <mesh filename="Uniblate_25cm.stl" scale="0.001 0.001 0.001"/> 
       </geometry>
     </collision>
   </link>

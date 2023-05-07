@@ -331,7 +331,49 @@
     <parent link="wrist_3_link"/>
     <child link="tool0"/>
   </joint>
+    <!-- Create a fixed joint with a parameterized name. -->
+  <joint name="measurement_tool_joint" type="fixed">
+    <!-- The parent link must be read from the robot model it is attached to. -->
+    <parent link="tool0"/>
+    <child link="measurement_tool"/>
+    <!-- The tool is directly attached to the flange. -->
+    <origin rpy="0 3.14 0" xyz="0 0 0"/>
+  </joint>
 
+   <link name="measurement_tool">
+    <contact>
+      <lateral_friction value="10.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+       <mass value="0.0"/>
+       <inertia ixx="0.0001" ixy="0" ixz="0" iyy="1" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <!-- The path to the visual meshes in the package. -->
+        <mesh filename="../Fin_grip_vhacd2.obj" scale="0.02 0.02 0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <!-- <origin rpy="0 0 0" xyz="0 0 0"/> -->
+      <geometry>
+        <mesh filename="../Fin_grip_vhacd2.obj" scale="0.02 0.02 0.02"/>
+        <!-- <mesh size="0.025 0.025 0.025"/>  -->
+      </geometry>
+    </collision> 
+  </link>
+
+  <!-- TCP frame -->
+  <joint name="tcp_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="measurement_tool"/>
+    <child link="tcp"/>
+  </joint>
+  <link name="tcp"/>
 
   <link name="world"/>
   <joint name="world_joint" type="fixed">
